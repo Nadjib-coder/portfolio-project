@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 
 const router = express.Router();
 
@@ -22,4 +22,4 @@ router.put("/tasks/:id", (req, res) => {
   res.status(200).json({ mssg: "PUT REQUEST TO /api/tasks/:id" });
 });
 
-module.exports = router;
+export default router;

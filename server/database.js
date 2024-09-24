@@ -1,6 +1,6 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
-import { config } from "dotenv";
-config();
+import dotenv from "dotenv";
+dotenv.config();
 
 const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/";
 
@@ -26,4 +26,4 @@ const connectToMongoDB = async () => {
 
 const getConnectedClient = () => client;
 
-export default { connectToMongoDB, getConnectedClient };
+export default { connectToMongoDB };
