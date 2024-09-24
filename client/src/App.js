@@ -4,7 +4,7 @@ function App() {
   const [message, setMessage] = useState("");
   useEffect(() => {
     async function getTasks() {
-      const res = await fetch("/api/tasks");
+      const res = await fetch("http://localhost:5000/api/tasks");
       const tasks = await res.json();
 
       setMessage(tasks.mssg);
