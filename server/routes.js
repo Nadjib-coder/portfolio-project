@@ -2,24 +2,24 @@ const express = require("express");
 
 const router = express.Router();
 
-// GET /todos
-router.get("/todos", (req, res) => {
-  res.status(200).json({ mssg: "GET REQUEST TO /api/todos" });
+// GET /tasks
+router.get("/tasks", (req, res) => {
+  res.status(200).json({ mssg: "GET REQUEST TO /api/tasks" });
 });
 
-// POST /todos
-router.post("/todos", (req, res) => {
-  res.status(201).json({ mssg: "POST REQUEST TO /api/todos" });
+// POST /tasks
+router.post("/tasks", (req, res) => {
+  res.status(201).json({ mssg: "POST REQUEST TO /api/tasks" });
 });
 
-// DELETE /todos/:id
-router.delete("/todos/:id", (req, res) => {
-  res.status(200).json({ mssg: "DELETE REQUEST TO /api/todos/:id" });
+// DELETE /tasks/:id
+router.delete("/tasks/:id", (req, res) => {
+  res.status(200).json({ mssg: "DELETE REQUEST TO /api/tasks/:id" });
 });
 
-// PUT /todos/:id
-router.put("/todos/:id", (req, res) => {
-  res.status(200).json({ mssg: "PUT REQUEST TO /api/todos/:id" });
+// PUT /tasks/:id
+router.put("/tasks/:id", (req, res) => {
+  res.status(200).json({ mssg: "PUT REQUEST TO /api/tasks/:id" });
 });
 
 module.exports = router;

@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 function App() {
   const [message, setMessage] = useState("");
   useEffect(() => {
-    async function getTodos() {
-      const res = await fetch("/api/todos");
-      const todos = await res.json();
+    async function getTasks() {
+      const res = await fetch("/api/tasks");
+      const tasks = await res.json();
 
-      setMessage(todos.mssg);
+      setMessage(tasks.mssg);
     }
-    getTodos();
+    getTasks();
   }, []);
 
   return (
