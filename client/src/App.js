@@ -20,3 +20,5 @@ function App() {
   );
 }
 export default App;
+
+// 1:13:52 FULL CRUD on FRONTEND
