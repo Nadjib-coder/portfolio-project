@@ -6,9 +6,9 @@
 
 The architecture of TaskMaster is designed as a simple web application following the MVC (Model-View-Controller) pattern. The web application consists of:
 
-- **Client-Side Front-End**: Built with HTML, CSS, and JavaScript.
+- **Client-Side Front-End**: Built with React, HTML, CSS, and JavaScript.
 - **Server-Side Back-End**: Built with Node.js and Express.
-- **Database**: A relational database (e.g., MySQL or PostgreSQL) to store user tasks and related information.
+- **Database**: A Non-Relational Databases (Mongodb) to store user tasks and related information.
 
 ### Components
 
@@ -29,21 +29,18 @@ The architecture of TaskMaster is designed as a simple web application following
 - **/api/users**
   - `POST`: Registers a new user.
   - `GET`: Retrieves user profile information based on the session.
-
-### 3rd Party APIs
-
-- **None for MVP**.
+.
 
 ## 3. Data Model
 
-### Users Table
+### Users Info
 
 - `id`: Primary Key
 - `username`: String, unique
 - `email`: String, unique
 - `password`: String
 
-### Tasks Table
+### Tasks info
 
 - `id`: Primary Key
 - `user_id`: Foreign Key (references Users)
