@@ -26,4 +26,4 @@ const connectToMongoDB = async () => {
 
 const getConnectedClient = () => client;
 
-export default { connectToMongoDB };
+export { connectToMongoDB, getConnectedClient };
