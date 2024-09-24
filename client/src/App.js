@@ -3,7 +3,7 @@ import { useEffect } from "react";
 function App() {
   useEffect(() => {
     async function getTodos() {
-      const res = await fetch("http:localhost:5000/api/todos");
+      const res = await fetch("/api/todos");
       const todos = await res.json();
 
       console.log(todos);
