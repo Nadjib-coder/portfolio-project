@@ -1,12 +1,15 @@
 const express = require("express");
-
+const dotenv = require("dotenv");
+// const cors = require("cors");
+const router = require("./routes");
 const app = express();
+// app.use(cors());
 
-app.get("/hello", (req, res) => {
-  res.status(200).json({ message: "hello people" });
-});
+dotenv.config();
 
-const port = 5000;
+app.use("/api", router);
+
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Server is listing on http://localhost:${port}`);
 });
