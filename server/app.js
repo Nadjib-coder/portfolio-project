@@ -14,15 +14,17 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/api", router);
 
+// Serve static files (React build files)
 app.use(express.static(path.join(__dirname, "build")));
-app.get("/", (req, res) => {
+
+// Handle all other routes and send them to the React app
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build/index.html"));
 });
 
 dotenv.config();
-
-app.use("/api", router);
 
 const port = process.env.PORT || 10000;
 
