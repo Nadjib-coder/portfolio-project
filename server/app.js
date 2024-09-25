@@ -20,7 +20,7 @@ app.use("/api", router);
 app.use(express.static(path.join(__dirname, "build")));
 
 // Handle all other routes and send them to the React app
-app.get("*", (req, res) => {
+app.get("/api/*", (req, res) => {
   res.sendFile(path.join(__dirname, "build/index.html"));
 });
 
