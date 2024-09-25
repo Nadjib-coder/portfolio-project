@@ -24,7 +24,7 @@ dotenv.config();
 
 app.use("/api", router);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 10000;
 
 async function startServer() {
   await connectToMongoDB();
