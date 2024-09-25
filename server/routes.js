@@ -19,13 +19,13 @@ router.get("/tasks", async (req, res) => {
 // POST /tasks
 router.post("/tasks", async (req, res) => {
   const collection = getCollection();
-  const { task } = req.body;
+  let { task } = req.body;
 
   if (!task) {
     return res.status(400).json({ mssg: "Error no task found" });
   }
 
-  task = JSON.stringify(task);
+  task = typeof task === "string" ? task : JSON.stringify(task);
 
   const newTask = await collection.insertOne({ task, status: false });
 
