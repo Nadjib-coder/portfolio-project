@@ -6,6 +6,7 @@ import { connectToMongoDB } from "./database.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// Create __dirname equivalent for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -15,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "build")));
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build/index.html"));
 });
 
