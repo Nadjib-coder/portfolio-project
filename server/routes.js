@@ -1,7 +1,9 @@
 import express from "express";
-const router = express.Router();
 import { ObjectId } from "mongodb";
 import { getConnectedClient } from "./database.js";
+import { authenticateToken } from "./userRoutes.js"; // Import the auth middleware
+
+const router = express.Router();
 
 const getCollection = () => {
   const client = getConnectedClient();
@@ -10,14 +12,14 @@ const getCollection = () => {
 };
 
 // GET /tasks
-router.get("/tasks", async (req, res) => {
+router.get("/tasks", authenticateToken, async (req, res) => {
   const collection = getCollection();
-  const tasks = await collection.find({}).toArray();
+  const tasks = await collection.find({ userId: req.userId }).toArray();
   res.status(200).json(tasks);
 });
 
 // POST /tasks
-router.post("/tasks", async (req, res) => {
+router.post("/tasks", authenticateToken, async (req, res) => {
   const collection = getCollection();
   const { task } = req.body;
 
@@ -25,25 +27,27 @@ router.post("/tasks", async (req, res) => {
     return res.status(400).json({ mssg: "Error no task found" });
   }
 
-  task = JSON.stringify(task);
-
-  const newTask = await collection.insertOne({ task, status: false });
+  const newTask = await collection.insertOne({
+    task: JSON.stringify(task),
+    status: false,
+    userId: req.userId,
+  });
 
   res.status(201).json({ task, status: false, _id: newTask.insertedId });
 });
 
 // DELETE /tasks/:id
-router.delete("/tasks/:id", async (req, res) => {
+router.delete("/tasks/:id", authenticateToken, async (req, res) => {
   const collection = getCollection();
   const _id = new ObjectId(req.params.id);
 
-  const deletedTask = await collection.deleteOne({ _id });
+  const deletedTask = await collection.deleteOne({ _id, userId: req.userId });
 
   res.status(200).json(deletedTask);
 });
 
 // PUT /tasks/:id
-router.put("/tasks/:id", async (req, res) => {
+router.put("/tasks/:id", authenticateToken, async (req, res) => {
   const collection = getCollection();
   const _id = new ObjectId(req.params.id);
   const { status } = req.body;
@@ -53,7 +57,7 @@ router.put("/tasks/:id", async (req, res) => {
   }
 
   const updatedTask = await collection.updateOne(
-    { _id },
+    { _id, userId: req.userId },
     { $set: { status: !status } }
   );
 
